@@ -1,6 +1,3 @@
-// Problem Set 1
-// Harder mario variant
-
 #include <stdio.h>
 #include <stdlib.h>
 
