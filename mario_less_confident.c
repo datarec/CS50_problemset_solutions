@@ -1,3 +1,6 @@
+// Problem Set 1
+// Simple mario Varient 
+
 #include <stdio.h>
 #include <stdlib.h>
 
