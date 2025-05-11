@@ -1,3 +1,6 @@
+// Problem Set 1.
+// Harder mario variant, CS50. 
+
 #include <stdio.h>
 #include <stdlib.h>
 
