@@ -1,5 +1,5 @@
-// Problem Set 1
-// Simple mario Varient 
+// Problem Set 1.
+// Simple mario Varient, CS50. 
 
 #include <stdio.h>
 #include <stdlib.h>
