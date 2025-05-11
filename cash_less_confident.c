@@ -1,3 +1,5 @@
+// CS50 Cash problem, this is the easier variant.  
+
 #include <stdio.h>
 
 int getChange(int money) 
