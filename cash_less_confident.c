@@ -1,32 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
-
-int money = 0;
 
 int getChange(int money) 
 {   
     int coinCount;
+    int coins[] = {25, 10, 5, 1};
     while (money != 0) 
     {
-        if (25 <= money) 
+        for (int i = 0; i < sizeof(coins) / 4; i++) 
         {
-            money = money - 25;
-            coinCount++;
-        }
-        else if (10 <= money) 
-        {
-            money = money - 10;
-            coinCount++;
-        }
-        else if (5 <= money) 
-        {
-            money = money - 5;
-            coinCount++;
-        }
-        else if (1 <= money) 
-        {
-            money = money - 1;
-            coinCount++;
+            if (coins[i] <= money) 
+            {
+                money = money - coins[i];
+                coinCount++;
+            }
         }
     }
     printf("%d", coinCount);
@@ -34,6 +20,7 @@ int getChange(int money)
 
 int main() 
 {
+    int money;
     do 
     {
         printf("Change owed: ");
