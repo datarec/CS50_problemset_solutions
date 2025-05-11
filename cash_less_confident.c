@@ -1,4 +1,5 @@
-// CS50 Cash problem, this is the easier variant.  
+// Problem Set 1.
+// Simple Cash variant, CS50. 
 
 #include <stdio.h>
 
