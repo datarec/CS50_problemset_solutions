@@ -47,3 +47,11 @@ int main()
     while (number < 1);
     checkValidity(number);
 }
+
+// Confused about how to Analyse each digit?
+
+/* 
+1. Divide by 10 to remove a digit from your input variable, for this use a while loop.
+2. as you divide number (your input variable), will eventually divide itself to zero, meaning
+the while loop will automatically break out because 0 cannot be a true expression. 
+*/
