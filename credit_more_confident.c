@@ -3,10 +3,41 @@
 
 #include <stdio.h>
 
-void checkValidity(unsigned long long number)
+void getCardType(unsigned long long number2) 
 {
+    
+}
+
+void addSumOfExpression(unsigned long long number1, short evenSum) 
+{
+    short numCount; 
+    unsigned long long number2 = number1;
+    int oddSum = 0;
+    while (number1) 
+    {
+        numCount++;
+        if (numCount % 2 == 1 && number1 % 10 > 0) 
+        {
+            oddSum += number1 % 10;
+        }
+        number1 /= 10;
+    }
+    short finalSum = evenSum + oddSum;
+    if (finalSum % 10 == 0) 
+    {
+        getCardType(number2);
+    }
+    else if (finalSum % 10 != 0) 
+    {
+        printf("INVALID\n");
+    } 
+}
+
+void multiplySecLast(unsigned long long number)
+{
+    unsigned long long number1 = number;
     int numCount;
-    int finalSum;
+    short evenSum;
     while (number)
     {
         numCount++;
@@ -21,19 +52,17 @@ void checkValidity(unsigned long long number)
                     cardNumDoubled /= 10;
                     int second = cardNumDoubled % 10;
                     cardNumDoubled /= 10;
-                    finalSum += first + second;
-                    //printf("%d\n", first + second); 
+                    evenSum += first + second;
                 }
             }
             else 
             { 
-                //printf("%d\n", cardNumDoubled); 
-                finalSum += cardNumDoubled;
+                evenSum =+ cardNumDoubled;
             }
         }
         number /= 10;
     }
-    printf("SUM: %d", finalSum);
+    addSumOfExpression(number1, evenSum);
 }
 
 int main()
@@ -45,7 +74,7 @@ int main()
         scanf("%llu", &number);
     }
     while (number < 1);
-    checkValidity(number);
+    multiplySecLast(number);
 }
 
 // Confused about how to Analyse each digit?
