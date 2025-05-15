@@ -1,11 +1,12 @@
-// Problem Set 1.
-// Harder Credit variant, CS50. 
+// program to check the valididy of a card
 
 #include <stdio.h>
 
 void getCardType(unsigned long long number2) 
 {
-    
+    int americanExpress[] = {34, 37};
+
+    printf("LEGIT\n");
 }
 
 void addSumOfExpression(unsigned long long number1, short evenSum) 
@@ -52,16 +53,19 @@ void multiplySecLast(unsigned long long number)
                     cardNumDoubled /= 10;
                     int second = cardNumDoubled % 10;
                     cardNumDoubled /= 10;
-                    evenSum += first + second;
+                    evenSum = evenSum + (first + second);
+                    //printf("%d\n", evenSum);
                 }
             }
-            else 
-            { 
-                evenSum =+ cardNumDoubled;
+            else if (cardNumDoubled > 0)
+            {
+                evenSum = evenSum + cardNumDoubled;
+                //printf("%d\n", evenSum);
             }
         }
         number /= 10;
     }
+    //printf("FIN %d\n", evenSum);
     addSumOfExpression(number1, evenSum);
 }
 
@@ -76,11 +80,3 @@ int main()
     while (number < 1);
     multiplySecLast(number);
 }
-
-// Confused about how to Analyse each digit?
-
-/* 
-1. Divide by 10 to remove a digit from your input variable, for this use a while loop.
-2. as you divide number (your input variable), will eventually divide itself to zero, meaning
-the while loop will automatically break out because 0 cannot be a true expression. 
-*/
