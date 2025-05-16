@@ -2,11 +2,18 @@
 
 #include <stdio.h>
 
-void getCardType(unsigned long long number2) 
+void getCardType(unsigned long long number2, short numCount) 
 {
-    int americanExpress[] = {34, 37};
+    // visa check
+    if (numCount == 15) 
+    {
 
-    printf("LEGIT\n");
+    }
+    else if (numCount == 16) 
+    {
+
+    }
+    else if (numCount == )
 }
 
 void addSumOfExpression(unsigned long long number1, short evenSum) 
@@ -26,7 +33,7 @@ void addSumOfExpression(unsigned long long number1, short evenSum)
     short finalSum = evenSum + oddSum;
     if (finalSum % 10 == 0) 
     {
-        getCardType(number2);
+        getCardType(number2, numCount);
     }
     else if (finalSum % 10 != 0) 
     {
@@ -54,18 +61,15 @@ void multiplySecLast(unsigned long long number)
                     int second = cardNumDoubled % 10;
                     cardNumDoubled /= 10;
                     evenSum = evenSum + (first + second);
-                    //printf("%d\n", evenSum);
                 }
             }
             else if (cardNumDoubled > 0)
             {
                 evenSum = evenSum + cardNumDoubled;
-                //printf("%d\n", evenSum);
             }
         }
         number /= 10;
     }
-    //printf("FIN %d\n", evenSum);
     addSumOfExpression(number1, evenSum);
 }
 
