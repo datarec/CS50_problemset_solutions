@@ -1,19 +1,68 @@
-// program to check the valididy of a card
+// Problem Set 1. 
+// Harder problem, CS50. 
 
 #include <stdio.h>
+#include <ctype.h>
 
 void getCardType(unsigned long long number2, short numCount) 
 {
-    // visa check
-    if (numCount == 15) 
+    int NUMCOUNT = numCount;
+    while (numCount) 
     {
-
-    }
-    else if (numCount == 16) 
-    {
-
-    }
-    else if (numCount == )
+        if (numCount == 1) 
+        {
+            if (NUMCOUNT == 13 || NUMCOUNT == 14 
+                || NUMCOUNT == 15 || NUMCOUNT == 16) 
+            {
+                if (number2 % 10 == 4) 
+                {
+                    if (NUMCOUNT == 13 || NUMCOUNT == 14 ||
+                    NUMCOUNT == 15 || NUMCOUNT == 16) 
+                    {
+                        printf("VISA\n");
+                    }
+                }
+            }
+        }
+        // else if statement for american express. 
+        else if (numCount <= 2) 
+        {
+            int americanExpress[] = {4, 3, 7, 3};
+            int mastercard[] = {1, 5, 2, 5, 3, 5, 4, 5 ,5, 5};
+            if (NUMCOUNT == 15) 
+            {
+                if (number2 % 10 == americanExpress[2] || 
+                    number2 % 10 == americanExpress[0]) 
+                {
+                    number2 /= 10;
+                    if (number2 % 10 == americanExpress[3] ||
+                        number2 % 10 == americanExpress[1]) 
+                    {
+                        printf("AMERICAN EXPRESS\n");
+                    }      
+                }
+            }
+            else if (NUMCOUNT == 16) 
+            {
+                for (int i = 0; i <= 10; i++) 
+                {   
+                    if (i % 2 == 0) 
+                    {
+                        if (number2 % 10 == mastercard[i]) 
+                        {
+                            number2 /= 10;
+                            if (number2 % 10 == mastercard[1]) 
+                            {
+                                printf("MASTERCARD\n");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        numCount--;
+        number2 /= 10;
+    } 
 }
 
 void addSumOfExpression(unsigned long long number1, short evenSum) 
@@ -76,6 +125,7 @@ void multiplySecLast(unsigned long long number)
 int main()
 {
     unsigned long long number;
+    int noletters = isdigit(number);
     do 
     {
         printf("Number: ");
