@@ -1,5 +1,5 @@
 // Problem Set 1. 
-// Harder problem, CS50. 
+// Credit problem (More confident), CS50. 
 
 #include <stdio.h>
 #include <ctype.h>
@@ -125,12 +125,15 @@ void multiplySecLast(unsigned long long number)
 int main()
 {
     unsigned long long number;
-    int noletters = isdigit(number);
     do 
     {
         printf("Number: ");
-        scanf("%llu", &number);
+        
+        if (scanf("%llu", &number) != 1) 
+        {
+            while (getchar() != '\n');
+        }
     }
-    while (number < 1);
+    while (number < 1); 
     multiplySecLast(number);
 }
