@@ -11,17 +11,26 @@ int cypher_text(char* argv[])
 	printf("cyphertext: ");
 	for (int i = 0; plaintext[i] != '\0'; i++) 
 	{
-		printf("%c", plaintext[i] + 13);
+		printf("%c", plaintext[i] + 1);
 	}
 	printf("\n");
 }
 
 int main(int argc, char* argv[]) 
 {
-	if (argc != 2) 
+	char errormsg[20] = "Usage: ./caesar key";
+	for (int i = 0; argv[1][i] != '\0'; i++) 
 	{
-		printf("Usage: ./caesar key\n");
-		return 1;
+		if (argc != 2) 
+		{
+			printf("%s\n", errormsg);
+			return 1;
+		}
+		else if (argv[1][i] >= 'a' && argv[1][i] <= 'z') 
+		{
+			printf("%s\n",  errormsg);
+			return 1;
+		}
 	}
 	cypher_text(argv);
 }
