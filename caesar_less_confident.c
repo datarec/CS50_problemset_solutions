@@ -2,18 +2,34 @@
 // Simple caesar variant, CS50.
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int cypher_text(char* argv[]) 
 {
+	int key = atoi(argv[1]);
+	char letters[26] = "abcdefghijklmnopqrstuvwxyz";
 	char plaintext[100];
 	printf("plaintext: ");
 	fgets(plaintext, 100, stdin);
 	printf("cyphertext: ");
 	for (int i = 0; plaintext[i] != '\0'; i++) 
 	{
-		printf("%c", plaintext[i] + 1);
+		if (plaintext[i] + key > 'z') 
+		{
+			printf("%c", plaintext[i] = 'z' - plaintext[i]);
+			printf("%c", 'a' + plaintext[i]);
+		}
+		else if (plaintext[i] >= 'a' || plaintext[i] <= 'z')
+		{
+			printf("%c", plaintext[i] + key);
+		}
+		else
+		{
+			printf("%c", plaintext[i]);
+		}
 	}
 	printf("\n");
+
 }
 
 int main(int argc, char* argv[]) 
