@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cypher_text(char* argv[]) 
+int rotation(char* argv[]) 
 {
 	int key = atoi(argv[1]);
 	char plaintext[100];
@@ -13,20 +13,24 @@ int cypher_text(char* argv[])
 	printf("cyphertext: ");
 	for (int i = 0; plaintext[i] != '\0'; i++) 
 	{
-		if (plaintext[i] + key > 'z')
+		if (plaintext[i] + key > 'z') 
 		{
 			printf("%c", (plaintext[i] + key - 'z') + 'a' - 1);
 		}
-		else if (plaintext[i] < 'A' || plaintext[i] < 'a')  
+		else if (plaintext[i] < 'A' || plaintext[i] > 'Z' && plaintext[i] < 'a') 
 		{
 			printf("%c", plaintext[i]);
+		}
+		else if (plaintext[i] + key > 'Z' && plaintext[i] < 'a') 
+		{
+			printf("%c", (plaintext[i] + key - 'Z') + 'A' - 1);
 		}
 		else 
 		{
 			printf("%c", plaintext[i] + key);
 		}
 	}
-	printf("\n");
+	return 0;
 }
 
 int main(int argc, char* argv[]) 
@@ -45,5 +49,5 @@ int main(int argc, char* argv[])
 			return 1;
 		}
 	}
-	cypher_text(argv);
+	rotation(argv);
 }
