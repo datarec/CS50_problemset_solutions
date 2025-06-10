@@ -2,6 +2,7 @@
 
 int retLen(char* argv[]); 
 int checkAlpha(char* argv[]);
+int substitution(char* argv[]);
 
 int main(int argc, char* argv[])  
 {
@@ -17,6 +18,20 @@ int main(int argc, char* argv[])
 		printf("Usage: ./substitution key (MAX-MIN 26 letters)\n");
 		return 1;
 	}
+	substitution(argv);
+}
+
+int substitution(char* argv[]) 
+{
+	char plaintext[100];
+	printf("plaintext: ");
+	fgets(plaintext, 100, stdin);
+	for (int i = 0; plaintext[i] != '\0'; i++) 
+	{
+		
+		printf("%c", argv[1][(plaintext[i] - 'a')]);
+	}
+	printf("\n");
 }
 
 int checkAlpha(char* argv[]) 
