@@ -10,7 +10,7 @@ int rotation(char* argv[])
 	char plaintext[100];
 	printf("plaintext: ");
 	fgets(plaintext, 100, stdin);
-	printf("cyphertext: ");
+	printf("ciphertext: ");
 	for (int i = 0; plaintext[i] != '\0'; i++) 
 	{
 		if (plaintext[i] + key > 'z') 
