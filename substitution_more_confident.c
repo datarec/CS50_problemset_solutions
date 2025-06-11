@@ -1,37 +1,13 @@
 #include <stdio.h>
 
-int retLen(char* argv[]); 
-int checkAlpha(char* argv[]);
-int substitution(char* argv[]);
-
-int main(int argc, char* argv[])  
+int retLen(char* argv[]) 
 {
-	if (argc != 2) 
+	int i = 0;
+	for (i; argv[1][i] != '\0';) 
 	{
-		printf("Usage: ./substitution key\n");
-		return 1;
+		i++;
 	}
-	int length = retLen(argv);
-	int isAlpha = checkAlpha(argv);
-	if (length != 26 || isAlpha == 1) 
-	{
-		printf("Usage: ./substitution key (MAX-MIN 26 letters)\n");
-		return 1;
-	}
-	substitution(argv);
-}
-
-int substitution(char* argv[]) 
-{
-	char plaintext[100];
-	printf("plaintext: ");
-	fgets(plaintext, 100, stdin);
-	for (int i = 0; plaintext[i] != '\0'; i++) 
-	{
-		
-		printf("%c", argv[1][(plaintext[i] - 'a')]);
-	}
-	printf("\n");
+	return i;
 }
 
 int checkAlpha(char* argv[]) 
@@ -50,12 +26,43 @@ int checkAlpha(char* argv[])
 	return 0;
 }
 
-int retLen(char* argv[]) 
+int substitution(char* argv[]) 
 {
-	int i = 0;
-	for (i; argv[1][i] != '\0';) 
+	char plaintext[100];
+	printf("plaintext: ");
+	fgets(plaintext, 100, stdin);
+	printf("ciphertext: ");
+	for (int i = 0; plaintext[i] != '\0'; i++) 
 	{
-		i++;
+		if (plaintext[i] >= 'A' && plaintext[i] <= 'Z') 
+		{
+			printf("%c", argv[1][plaintext[i] - 'A']);
+		}
+		else if (plaintext[i] >= 'a' && plaintext[i] <= 'z') 
+		{
+			printf("%c", argv[1][plaintext[i] - 'a'] + 32);
+		}
+		else 
+		{
+			printf("%c", plaintext[i]);
+		}
 	}
-	return i;
+	return 0;
+}
+
+int main(int argc, char* argv[])  
+{
+	if (argc != 2) 
+	{
+		printf("Usage: ./substitution key\n");
+		return 1;
+	}
+	int length = retLen(argv);
+	int isAlpha = checkAlpha(argv);
+	if (length != 26 || isAlpha == 1) 
+	{
+		printf("Usage: ./substitution key (MAX-MIN 26 letters)\n");
+		return 1;
+	}
+	substitution(argv);
 }
