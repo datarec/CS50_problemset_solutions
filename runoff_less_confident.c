@@ -11,9 +11,16 @@ typedef struct
     char *votee;
 } candidates;
 
-int verifyInput(int argc, char *userVote) 
+int verifyInput(char *argv[], char *userVote, int argc) 
 {
-    for (int i = 0; )
+    for (int i = 0; i < argc; i++) 
+    {
+        if (strcmp(argv[i], userVote) != 0) 
+        {
+            printf("Invalid vote.\n");
+            return 1;
+        }
+    }
 
 }
 
@@ -24,26 +31,23 @@ int castVotes(int argc, char *argv[])
     fgets(voters, 5, stdin);
     int voteNo = atoi(voters);
 
-    candidates candidate[argc-1];
+    candidates candidate[argc];
 
-    for (int i = 0; i < argc - 1; i++) 
+    for (int i = 0; i < argc; i++) 
     {
         candidate[i].votee = argv[i + 1];
     }
-    /* 
-    first make sure we're doing as many votes as there is candidates 
-    then make sure you're doing as many votes as voteNo
-    */
-
-    // ask for input convert it to an integer then put it inside of the struct.
-    for (int i = 0; argc - 1 > i; i++) 
+    for (int i = 0; argc > i; i++) 
     {
         for (int i = 0; i < voteNo; i++) 
         {
             char userVote[20];
             printf("Rank %d: ", i + 1);
             fgets(userVote, 20, stdin);
-            verifyInput(argc, userVote);
+            if (verifyInput(argv, userVote, argc) == 1) 
+            {
+                return 1;
+            }
         }
         printf("\n");
     }
@@ -56,6 +60,9 @@ int main(int argc, char* argv[])
         printf("Usage: ./runoff [candidate ...]\n");
         return 1;
     }
-    castVotes(argc, argv);
-    return 0;
+    else if (castVotes(argc-1, argv) == 1) 
+    {
+        return 1;
+    }
+
 }
