@@ -11,16 +11,28 @@ typedef struct
     char *votee;
 } candidates;
 
-int verifyInput(char *argv[], char *userVote, int argc) 
+int cmpstr(char *argv, char *userVote)
 {
-    for (int i = 0; i < argc; i++) 
+    for (int i = 0; argv[i] != '\0'; i++) 
     {
-        if (strcmp(argv[i], userVote) != 0) 
+        if (argv[i] != userVote[i]) 
         {
-            printf("Invalid vote.\n");
             return 1;
         }
     }
+    return 0;
+}
+
+int verifyInput(char *argv[], char userVote[], int argc) 
+{
+    for (int i = 0; i < argc; i++) 
+    {
+        if (cmpstr(argv[i], userVote) == 0) 
+        {
+            return 0;
+        }
+    }
+    return 1;
 
 }
 
@@ -31,12 +43,6 @@ int castVotes(int argc, char *argv[])
     fgets(voters, 5, stdin);
     int voteNo = atoi(voters);
 
-    candidates candidate[argc];
-
-    for (int i = 0; i < argc; i++) 
-    {
-        candidate[i].votee = argv[i + 1];
-    }
     for (int i = 0; argc > i; i++) 
     {
         for (int i = 0; i < voteNo; i++) 
@@ -46,6 +52,7 @@ int castVotes(int argc, char *argv[])
             fgets(userVote, 20, stdin);
             if (verifyInput(argv, userVote, argc) == 1) 
             {
+                printf("Invalid vote.");
                 return 1;
             }
         }
@@ -60,9 +67,8 @@ int main(int argc, char* argv[])
         printf("Usage: ./runoff [candidate ...]\n");
         return 1;
     }
-    else if (castVotes(argc-1, argv) == 1) 
+    else if (castVotes(argc, argv) == 1) 
     {
         return 1;
     }
-
 }
