@@ -33,7 +33,6 @@ int verifyInput(char *argv[], char userVote[], int argc)
         }
     }
     return 1;
-
 }
 
 int castVotes(int argc, char *argv[]) 
@@ -43,7 +42,7 @@ int castVotes(int argc, char *argv[])
     fgets(voters, 5, stdin);
     int voteNo = atoi(voters);
 
-    for (int i = 0; argc > i; i++) 
+    for (int i = 0; argc-1 > i; i++) 
     {
         for (int i = 0; i < voteNo; i++) 
         {
@@ -56,7 +55,6 @@ int castVotes(int argc, char *argv[])
                 return 1;
             }
         }
-        printf("\n");
     }
 }
 
