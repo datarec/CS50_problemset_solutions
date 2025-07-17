@@ -37,13 +37,14 @@ int verifyInput(char *argv[], char userVote[], int argc)
 
 int castVotes(int argc, char *argv[]) 
 {
+    candidates candidate[argc];
     char voters[5];
     printf("Number of voters: ");
     fgets(voters, 5, stdin);
     int voteNo = atoi(voters);
-
     for (int i = 0; argc-1 > i; i++) 
     {
+        candidate[i].votee = argv[i+1];
         for (int i = 0; i < voteNo; i++) 
         {
             char userVote[20];
@@ -54,8 +55,13 @@ int castVotes(int argc, char *argv[])
                 printf("Invalid vote.");
                 return 1;
             }
+            else 
+            {
+                candidate[i].votes += 1;
+            }
         }
     }
+    return 0;
 }
 
 int main(int argc, char* argv[])  
