@@ -5,11 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct  
+struct candidate
 {
     int votes;
     char *votee;
-} candidates;
+};
 
 int cmpstr(char *argv, char *userVote)
 {
@@ -37,14 +37,14 @@ int verifyInput(char *argv[], char userVote[], int argc)
 
 int castVotes(int argc, char *argv[]) 
 {
-    candidates candidate[argc];
+    struct candidate candidates[argc];
     char voters[5];
     printf("Number of voters: ");
     fgets(voters, 5, stdin);
     int voteNo = atoi(voters);
     for (int i = 0; argc-1 > i; i++) 
     {
-        candidate[i].votee = argv[i+1];
+        candidates[i].votee = argv[i+1];
         for (int i = 0; i < voteNo; i++) 
         {
             char userVote[20];
@@ -57,7 +57,7 @@ int castVotes(int argc, char *argv[])
             }
             else 
             {
-                candidate[i].votes += 1;
+                candidates[i].votes += 1;
             }
         }
         printf("\n");
