@@ -11,11 +11,11 @@ struct candidate
     char *votee;
 };
 
-int cmpstr(char *argv, char *userVote)
+int cmpstr(char args[], char *userVote)
 {
-    for (int i = 0; argv[i] != '\0'; i++) 
+    for (int i = 0; args[i] != '\0'; i++) 
     {
-        if (argv[i] != userVote[i]) 
+        if (args[i] != userVote[i]) 
         {
             return 1;
         }
@@ -23,11 +23,11 @@ int cmpstr(char *argv, char *userVote)
     return 0;
 }
 
-int verifyInput(char *argv[], char userVote[], int argc) 
+int verifyInput(char *args[], char userVote[], int size) 
 {
-    for (int i = 0; i < argc; i++) 
+    for (int i = 0; i < size; i++) 
     {
-        if (cmpstr(argv[i], userVote) == 0) 
+        if (cmpstr(args[i], userVote) == 0) 
         {
             return 0;
         }
@@ -35,29 +35,25 @@ int verifyInput(char *argv[], char userVote[], int argc)
     return 1;
 }
 
-int castVotes(int argc, char *argv[]) 
+int castVotes(int size, char *args[]) 
 {
-    struct candidate candidates[argc];
+    struct candidate candidates[size];
     char voters[5];
     printf("Number of voters: ");
     fgets(voters, 5, stdin);
     int voteNo = atoi(voters);
-    for (int i = 0; argc-1 > i; i++) 
+    for (int i = 0; size-1 > i; i++) 
     {
-        candidates[i].votee = argv[i+1];
+        candidates[i].votee = args[i+1];
         for (int i = 0; i < voteNo; i++) 
         {
             char userVote[20];
             printf("Rank %d: ", i + 1);
             fgets(userVote, 20, stdin);
-            if (verifyInput(argv, userVote, argc) == 1) 
+            if (verifyInput(args, userVote, size) == 1) 
             {
                 printf("Invalid vote.");
                 return 1;
-            }
-            else 
-            {
-                candidates[i].votes += 1;
             }
         }
         printf("\n");
