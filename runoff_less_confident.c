@@ -27,7 +27,7 @@ int verifyInput(char *args[], char userVote[], int size)
 {
     for (int i = 0; i < size; i++) 
     {
-        if (cmpstr(args[i], userVote) == 0) 
+        if (!cmpstr(args[i], userVote)) 
         {
             return 0;
         }
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
         printf("Usage: ./runoff [candidate ...]\n");
         return 1;
     }
-    else if (castVotes(argc, argv) == 1) 
+    else if (castVotes(argc, argv)) 
     {
         return 1;
     }
