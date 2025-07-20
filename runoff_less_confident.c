@@ -50,7 +50,7 @@ int castVotes(int size, char *args[])
             char userVote[20];
             printf("Rank %d: ", i + 1);
             fgets(userVote, 20, stdin);
-            if (verifyInput(args, userVote, size) == 1) 
+            if (verifyInput(args, userVote, size)) 
             {
                 printf("Invalid vote.");
                 return 1;
